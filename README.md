@@ -44,7 +44,7 @@ O processo mantém a ordem das fotografias do XML; a primeira continua a ser a c
 - **Azure Storage Standard LRS**: Table Storage para as viaturas e um contentor Blob privado para imagens.
 - **Autenticação local**: palavra-passe guardada como setting secreto no Azure, nunca enviada para o browser exceto durante o login HTTPS. A sessão usa um cookie `HttpOnly`, `Secure` e assinado.
 
-Para um catálogo desta dimensão, o custo recorrente deverá ser dominado pelo espaço ocupado pelas imagens e respetivas operações. Confirme sempre os preços atuais da região escolhida na calculadora Azure. O plano Free tem limites de utilização; se o tráfego os ultrapassar, a evolução natural é o plano Standard.
+Para um catálogo desta dimensão, o custo recorrente deverá ser dominado pelo espaço ocupado pelas imagens e respetivas operações. Confirme sempre os preços atuais da região escolhida na calculadora Azure.
 
 ## Criar recursos Azure
 
@@ -57,7 +57,7 @@ az deployment group create `
                adminSessionSecret="<valor-aleatorio-com-pelo-menos-32-carateres>"
 ```
 
-O Bicep cria o Static Web App Free, a conta Storage LRS, a tabela e o contentor de imagens. Não guarde os dois valores secretos no repositório.
+O Bicep cria o Static Web App Free, a conta Storage LRS, a tabela e o contentor privado de imagens. Não guarde os dois valores secretos no repositório.
 
 ## Publicar
 

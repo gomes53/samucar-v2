@@ -65,7 +65,7 @@ resource vehiclesTable 'Microsoft.Storage/storageAccounts/tableServices/tables@2
 
 resource staticSite 'Microsoft.Web/staticSites@2023-12-01' = {
   name: siteName
-  location: 'West Europe'
+  location: location
   sku: {
     name: 'Free'
     tier: 'Free'
