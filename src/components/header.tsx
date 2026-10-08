@@ -11,9 +11,9 @@ export function Header() {
           <Image
             src="/brand/logo-wide.png"
             alt="Samucar"
-            width={660}
-            height={296}
-            className="h-12 w-auto sm:h-16"
+            width={673}
+            height={166}
+            className="h-14 w-auto sm:h-[4.5rem]"
             priority
           />
         </Link>

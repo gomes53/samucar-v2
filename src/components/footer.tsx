@@ -11,9 +11,9 @@ export function Footer() {
           <Image
             src="/brand/logo-wide.png"
             alt="Samucar"
-            width={660}
-            height={296}
-            className="mb-5 h-12 w-auto"
+            width={673}
+            height={166}
+            className="mb-5 h-14 w-auto"
           />
           <p className="max-w-md leading-7 text-zinc-400">{site.description}</p>
         </div>
