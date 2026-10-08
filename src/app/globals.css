@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gold: #d8b45f;
+  --gold-dark: #8d6a27;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f6f5f2; color: #18181b; font-family: var(--font-manrope), sans-serif; }
+button, a, input, select, textarea { outline-color: var(--gold); }
+button, summary, select { cursor: pointer; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.shell { width: min(100% - 2rem, 1240px); margin-inline: auto; }
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.76) 48%, rgba(0,0,0,.28) 100%),
+    url("https://i.ibb.co/r2VDHX7q/4d121102b196.jpg");
+  background-position: center 52%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, transparent, rgba(0,0,0,.45));
+}
+.gold-text { color: var(--gold); font-family: var(--font-playfair), serif; font-style: italic; font-weight: 600; }
+.eyebrow { margin-bottom: 1.1rem; font-size: .74rem; font-weight: 800; letter-spacing: .23em; text-transform: uppercase; color: var(--gold); }
+.section-heading { font-size: clamp(2.25rem, 5vw, 4.25rem); font-weight: 850; line-height: 1.04; letter-spacing: -.045em; }
+.gold-button { display: inline-flex; align-items: center; gap: .55rem; border-radius: .7rem; background: linear-gradient(135deg, #e3c477, #b98b36); padding: .75rem 1.15rem; color: #0a0a0a; font-size: .86rem; font-weight: 800; transition: .2s; }
+.gold-button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.outline-button { display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.3); border-radius: .7rem; font-size: .86rem; font-weight: 700; transition: .2s; }
+.outline-button:hover { background: white; color: black; }
+.nav-link { color: #d4d4d8; transition: color .2s; }
+.nav-link:hover { color: var(--gold); }
+.footer-title { margin-bottom: 1.25rem; color: white; font-weight: 800; }
+.footer-link { display: flex; align-items: flex-start; gap: .7rem; color: #a1a1aa; transition: color .2s; }
+.footer-link:hover { color: var(--gold); }
+.spec { display: flex; align-items: center; gap: .45rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spec svg { width: 16px; height: 16px; flex: none; color: #a17b30; }
+.filter-input { height: 3rem; min-width: 0; border: 1px solid #e4e4e7; border-radius: .65rem; background: #fafafa; padding: 0 .85rem; font-size: .84rem; color: #27272a; }
+.filter-input:focus { border-color: #bc913d; background: white; }
+.content-page { background: white; padding-block: 5rem 7rem; }
+.prose-page { max-width: 800px; color: #52525b; line-height: 1.85; }
+.prose-page h1 { margin-bottom: 2rem; color: #18181b; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 850; letter-spacing: -.04em; line-height: 1; }
+.prose-page h2 { margin: 2.5rem 0 .8rem; color: #27272a; font-size: 1.35rem; font-weight: 800; }
+.prose-page p, .prose-page ul { margin-bottom: 1rem; }
+.prose-page ul { padding-left: 1.25rem; list-style: disc; }
+.prose-page a { color: var(--gold-dark); text-decoration: underline; }
+.credit-details { display: grid; gap: .75rem; margin-bottom: 2.5rem; }
+.credit-details > div { border: 1px solid #e4e4e7; border-radius: .75rem; padding: 1rem 1.1rem; background: #fafafa; }
+.credit-details dt { color: #71717a; font-size: .75rem; font-weight: 800; letter-spacing: .02em; }
+.credit-details dd { margin-top: .25rem; color: #27272a; font-weight: 700; }
+.admin-input { width: 100%; border: 1px solid #d4d4d8; border-radius: .6rem; background: white; padding: .75rem .9rem; font-size: .9rem; }
+.admin-label { display: grid; gap: .4rem; color: #3f3f46; font-size: .78rem; font-weight: 700; }
+@media (max-width: 639px) {
+  .shell { width: min(100% - 1.25rem, 1240px); }
+  .hero { background-position: 60% center; }
+  .section-heading { font-size: 2.25rem; }
+  .filter-input { height: 2.8rem; padding-inline: .7rem; }
 }

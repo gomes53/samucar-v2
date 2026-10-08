@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Samucar
 
-## Getting Started
+Redesign do site da Samucar com catálogo público, filtros, páginas de detalhe e uma área de administração protegida por palavra-passe.
 
-First, run the development server:
+## Desenvolvimento local
 
-```bash
+Requisitos: Node.js 22 ou superior.
+
+```powershell
+Copy-Item .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra `http://localhost:3000`. Sem configuração adicional, a palavra-passe local de `/admin` é `admin`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Fotografias
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- A primeira fotografia da lista é sempre a capa da viatura.
+- Ao selecionar vários ficheiros, a ordem escolhida pelo navegador é preservada.
+- Na edição, use **Usar como capa** para mover qualquer fotografia para a primeira posição.
+- Em Azure, as imagens são guardadas no contentor privado `vehicle-images`; o site entrega-as através de uma rota com cache sem expor a chave do Storage.
+- JPG, PNG e WebP são aceites, até 10 MB por ficheiro e 30 ficheiros por carregamento.
 
-## Learn More
+## Importar o XML atual
 
-To learn more about Next.js, take a look at the following resources:
+Gerar novamente o catálogo local:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```powershell
+npm run migrate -- --source "C:\caminho\data_custom.xml"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Depois de criar a infraestrutura, defina `AZURE_STORAGE_ACCOUNT_NAME` e `AZURE_STORAGE_CONNECTION_STRING`. Para copiar também todas as imagens do imgbb para Azure Blob Storage e carregar as viaturas para Table Storage:
 
-## Deploy on Vercel
+```powershell
+npm run migrate -- --source "C:\caminho\data_custom.xml" --download-images
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O processo mantém a ordem das fotografias do XML; a primeira continua a ser a capa.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Arquitetura e custos
+
+- **Azure Static Web Apps Free**: frontend Next.js e rotas de API, domínio personalizado e TLS. Sem custo fixo no plano Free.
+- **Azure Storage Standard LRS**: Table Storage para as viaturas e um contentor Blob privado para imagens.
+- **Autenticação local**: palavra-passe guardada como setting secreto no Azure, nunca enviada para o browser exceto durante o login HTTPS. A sessão usa um cookie `HttpOnly`, `Secure` e assinado.
+
+Para um catálogo desta dimensão, o custo recorrente deverá ser dominado pelo espaço ocupado pelas imagens e respetivas operações. Confirme sempre os preços atuais da região escolhida na calculadora Azure. O plano Free tem limites de utilização; se o tráfego os ultrapassar, a evolução natural é o plano Standard.
+
+## Criar recursos Azure
+
+```powershell
+az group create --name rg-samucar-prod --location westeurope
+az deployment group create `
+  --resource-group rg-samucar-prod `
+  --template-file infra\main.bicep `
+  --parameters adminPassword="<uma-palavra-passe-forte>" `
+               adminSessionSecret="<valor-aleatorio-com-pelo-menos-32-carateres>"
+```
+
+O Bicep cria o Static Web App Free, a conta Storage LRS, a tabela e o contentor de imagens. Não guarde os dois valores secretos no repositório.
+
+## Publicar
+
+1. Coloque o projeto num repositório GitHub.
+2. No portal Azure, copie o deployment token do Static Web App.
+3. Crie o secret GitHub `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+4. Faça push para `main`; o workflow `.github/workflows/azure-static-web-apps.yml` compila e publica.
+5. Execute a migração XML com as variáveis Azure definidas.
+6. Associe `samucar.pt` em **Custom domains** no Static Web App e atualize o DNS conforme indicado pelo portal.
+
+## Variáveis
+
+Consulte `.env.example`. Em produção são obrigatórias:
+
+- `ADMIN_PASSWORD`
+- `ADMIN_SESSION_SECRET`
+- `AZURE_STORAGE_ACCOUNT_NAME`
+- `AZURE_STORAGE_CONNECTION_STRING`
+- `AZURE_STORAGE_TABLE_NAME`
+- `AZURE_STORAGE_CONTAINER_NAME`
