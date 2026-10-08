@@ -37,6 +37,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 100,
     "slug": "mercedes-classe-c-c220-cdi-amg-710126",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -78,6 +79,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 99,
     "slug": "tesla-model-3-performance-094511",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -125,6 +127,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 98,
     "slug": "mercedes-classe-c-c350e-amg-344908",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -163,6 +166,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 97,
     "slug": "tesla-model-y-performance-271763",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -209,6 +213,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 96,
     "slug": "peugeot-308-hdi-style-063862",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -255,6 +260,7 @@
     ],
     "status": "available",
     "featured": true,
+    "sortOrder": 95,
     "slug": "tesla-model-3-standard-range-plus-408224",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -297,6 +303,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 94,
     "slug": "audi-a5-tdi-s-line-285032",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -341,6 +348,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 93,
     "slug": "tesla-model-3-standard-range-plus-886461",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -391,6 +399,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 92,
     "slug": "seat-leon-st-xcellence-883576",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -440,6 +449,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 91,
     "slug": "mercedes-classe-a-a250e-sedan-amg-269143",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -489,6 +499,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 90,
     "slug": "peugeot-208-gt-line-278589",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -535,6 +546,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 89,
     "slug": "peugeot-traveller-9-lugares-078718",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -576,6 +588,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 88,
     "slug": "peugeot-2008-allure-043973",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -621,6 +634,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 87,
     "slug": "mercedes-classe-a-a200-cdi-amg-649670",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -668,6 +682,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 86,
     "slug": "bmw-serie-5-520d-pack-m-297400",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -709,6 +724,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 85,
     "slug": "mercedes-classe-a-a180-amg-723620",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -754,6 +770,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 84,
     "slug": "peugeot-3008-gt-line-456774",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -808,6 +825,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 83,
     "slug": "bmw-serie-6-620d-gt-pack-m-154587",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -857,6 +875,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 82,
     "slug": "porsche-cayenne-coupe-489801",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -903,6 +922,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 81,
     "slug": "bmw-serie-4-420d-sport-429527",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -949,6 +969,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 80,
     "slug": "fiat-500e-icon-539711",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -995,6 +1016,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 79,
     "slug": "bmw-serie-5-520d-gt-pack-m-753030",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1043,6 +1065,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 78,
     "slug": "kgm-musso-ev-804260",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1091,6 +1114,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 77,
     "slug": "audi-a4-avant-tdi-089246",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1139,6 +1163,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 76,
     "slug": "bmw-serie-5-pack-m-056840",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1190,6 +1215,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 75,
     "slug": "peugeot-3008-gt-line-081377",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1235,6 +1261,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 74,
     "slug": "tesla-model-3-long-range-dual-motor-905767",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1280,6 +1307,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 73,
     "slug": "bmw-serie-1-116d-sport-606894",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1331,6 +1359,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 72,
     "slug": "nissan-leaf-acenta-40-kwh-174233",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1375,6 +1404,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 71,
     "slug": "peugeot-partner-xl-684803",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1420,6 +1450,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 70,
     "slug": "bmw-serie-5-530e-line-luxury-069754",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1471,6 +1502,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 69,
     "slug": "ford-ranger-raptor-034116",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1520,6 +1552,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 68,
     "slug": "bmw-serie-1-116d-336222",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1563,6 +1596,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 67,
     "slug": "bmw-serie-1-118d-pack-m-cabrio-855212",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1611,6 +1645,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 66,
     "slug": "bmw-serie-5-530e-pack-m-plug-in-783805",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1665,6 +1700,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 65,
     "slug": "jeep-wrangler-unlimited-4xe-sahara-758215",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1710,6 +1746,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 64,
     "slug": "seat-arona-tdi-148193",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1760,6 +1797,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 63,
     "slug": "bmw-serie-1-116d-pack-m-393056",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1805,6 +1843,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 62,
     "slug": "renault-zoe-52kwh-limited-518639",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1847,6 +1886,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 61,
     "slug": "fiat-tipo-cross-944258",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1891,6 +1931,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 60,
     "slug": "peugeot-508-hdi-sw-186375",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1934,6 +1975,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 59,
     "slug": "bmw-x1-25e-pack-m-697450",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -1975,6 +2017,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 58,
     "slug": "peugeot-508-gt-line-560244",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2028,6 +2071,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 57,
     "slug": "porsche-cayenne-coupe-694468",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2078,6 +2122,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 56,
     "slug": "tesla-model-3-standard-range-plus-060321",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2127,6 +2172,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 55,
     "slug": "seat-leon-tsi-style-ss-470953",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2168,6 +2214,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 54,
     "slug": "peugeot-308-gt-line-476566",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2217,6 +2264,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 53,
     "slug": "tesla-model-s-ludicrous-performance-633212",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2266,6 +2314,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 52,
     "slug": "bmw-serie-2-225-xe-plug-in-397705",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2314,6 +2363,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 51,
     "slug": "mercedes-classe-c-c350e-kit-63-amg-881836",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2361,6 +2411,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 50,
     "slug": "jaguar-f-type-p300-coupe-354761",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2407,6 +2458,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 49,
     "slug": "ds-ds4-performance-692903",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2450,6 +2502,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 48,
     "slug": "citroen-c3-1-2-851482",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2506,6 +2559,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 47,
     "slug": "polestar-2-long-range-814396",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2552,6 +2606,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 46,
     "slug": "renault-zoe-zen-794533",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2600,6 +2655,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 45,
     "slug": "peugeot-3008-gt-plug-in-399363",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2645,6 +2701,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 44,
     "slug": "ford-puma-st-line-330250",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2691,6 +2748,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 43,
     "slug": "porsche-cayenne-s-e-hybrid-045219",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2732,6 +2790,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 42,
     "slug": "bmw-400c-gt-619598",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2787,6 +2846,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 41,
     "slug": "bmw-serie-4-420d-grand-coupe-pack-m-012289",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2835,6 +2895,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 40,
     "slug": "audi-sq7-7-lugares-418811",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2884,6 +2945,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 39,
     "slug": "mercedes-classe-a-a250e-style-plus-194404",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2941,6 +3003,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 38,
     "slug": "bmw-ix3-inspiring-633686",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -2984,6 +3047,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 37,
     "slug": "porsche-panamera-plug-in-169823",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3021,6 +3085,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 36,
     "slug": "mercedes-classe-a-a180-amg-auto-898787",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3060,6 +3125,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 35,
     "slug": "smart-forfour-auto-724845",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3112,6 +3178,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 34,
     "slug": "porsche-cayenne-s-e-hybrid-226714",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3154,6 +3221,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 33,
     "slug": "renault-talisman-dci-910075",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3195,6 +3263,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 32,
     "slug": "mercedes-classe-a-a180-cdi-urban-240279",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3238,6 +3307,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 31,
     "slug": "fiat-500e-eletrico-348265",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3283,6 +3353,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 30,
     "slug": "mercedes-classe-b-b200-421210",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3327,6 +3398,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 29,
     "slug": "volvo-v60-d3-035797",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3378,6 +3450,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 28,
     "slug": "bmw-x1-25e-pack-m-166157",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3426,6 +3499,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 27,
     "slug": "peugeot-208-allure-169101",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3474,6 +3548,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 26,
     "slug": "peugeot-5008-7-lugares-884287",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3519,6 +3594,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 25,
     "slug": "bmw-serie-1-118d-pack-m-cabrio-689961",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3566,6 +3642,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 24,
     "slug": "mercedes-classe-b-b180-amg-909433",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3621,6 +3698,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 23,
     "slug": "aiways-u5-prime-ev-63kwh-104072",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3672,6 +3750,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 22,
     "slug": "peugeot-2008-allure-347526",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3717,6 +3796,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 21,
     "slug": "mercedes-classe-c-c300d-703010",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3760,6 +3840,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 20,
     "slug": "opel-insignia-cdti-041044",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3806,6 +3887,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 19,
     "slug": "porsche-taycan-sedan-015795",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3850,6 +3932,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 18,
     "slug": "renault-clio-tce-186265",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3885,6 +3968,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 17,
     "slug": "audi-a1-s-line-964885",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3929,6 +4013,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 16,
     "slug": "renault-clio-tce-evo-bi-fuel-962859",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -3979,6 +4064,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 15,
     "slug": "peugeot-208-nacional-981384",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4021,6 +4107,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 14,
     "slug": "volkswagen-polo-tdi-493155",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4069,6 +4156,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 13,
     "slug": "bmw-serie-5-520d-sedan-auto-514378",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4114,6 +4202,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 12,
     "slug": "toyota-yaris-hybrid-704197",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4155,6 +4244,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 11,
     "slug": "renault-captur-tce-600630",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4196,6 +4286,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 10,
     "slug": "bmw-serie-3-318d-luxury-271091",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4244,6 +4335,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 9,
     "slug": "cupra-formentor-tdi-234988",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4287,6 +4379,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 8,
     "slug": "porsche-cayenne-coupe-185071",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4331,6 +4424,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 7,
     "slug": "mercedes-cla-180d-485371",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4377,6 +4471,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 6,
     "slug": "volvo-xc60-d4-271983",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4418,6 +4513,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 5,
     "slug": "citroen-c4-cactus-766514",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4467,6 +4563,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 4,
     "slug": "mini-countryman-cooper-se-premium-untamed-706273",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4513,6 +4610,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 3,
     "slug": "bmw-serie-4-425d-gran-coupe-940832",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4551,6 +4649,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 2,
     "slug": "mini-one-d-panoramico-484857",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"
@@ -4587,6 +4686,7 @@
     ],
     "status": "available",
     "featured": false,
+    "sortOrder": 1,
     "slug": "porsche-macan-2-538213",
     "createdAt": "2026-10-08T10:09:25.115Z",
     "updatedAt": "2026-10-08T10:09:25.115Z"

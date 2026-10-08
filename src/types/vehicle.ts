@@ -22,6 +22,7 @@ export const vehicleSchema = z.object({
     .min(1, "Adicione pelo menos uma fotografia"),
   status: vehicleStatusSchema.default("available"),
   featured: z.coerce.boolean().default(false),
+  sortOrder: z.coerce.number().default(0),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });

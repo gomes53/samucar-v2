@@ -48,6 +48,7 @@ button, summary, select { cursor: pointer; }
 .spec { display: flex; align-items: center; gap: .45rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .spec svg { width: 16px; height: 16px; flex: none; color: #a17b30; }
 .filter-input { height: 3rem; min-width: 0; border: 1px solid #e4e4e7; border-radius: .65rem; background: #fafafa; padding: 0 .85rem; font-size: .84rem; color: #27272a; }
+.filter-input.search-input { padding-left: 2.75rem; }
 .filter-input:focus { border-color: #bc913d; background: white; }
 .content-page { background: white; padding-block: 5rem 7rem; }
 .prose-page { max-width: 800px; color: #52525b; line-height: 1.85; }

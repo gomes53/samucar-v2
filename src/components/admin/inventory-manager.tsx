@@ -24,6 +24,7 @@ const emptyVehicle = (): VehicleInput => ({
   photos: [],
   status: "available",
   featured: false,
+  sortOrder: Date.now(),
 });
 
 export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle[] }) {

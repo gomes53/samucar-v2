@@ -36,7 +36,7 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         if (sort === "price-asc") return a.price - b.price;
         if (sort === "price-desc") return b.price - a.price;
         if (sort === "year") return b.year - a.year;
-        return b.createdAt.localeCompare(a.createdAt);
+        return b.sortOrder - a.sortOrder || b.createdAt.localeCompare(a.createdAt);
       });
   }, [vehicles, query, brand, fuel, transmission, sort]);
 
@@ -60,7 +60,7 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         <label className="relative mb-3 block flex-1 lg:mb-0">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={19} />
           <span className="sr-only">Pesquisar viatura</span>
-          <input className="filter-input w-full pl-11" placeholder="Marca, modelo ou versão…" value={query} onChange={(event) => updateFilter(setQuery, event.target.value)} />
+          <input className="filter-input search-input w-full" placeholder="Marca, modelo ou versão…" value={query} onChange={(event) => updateFilter(setQuery, event.target.value)} />
         </label>
         <div className="grid grid-cols-2 gap-3 lg:flex">
           <FilterSelect label="Marca" value={brand} onChange={(value) => updateFilter(setBrand, value)} options={brands} />

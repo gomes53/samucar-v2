@@ -134,6 +134,7 @@ for (const [vehicleIndex, item] of xmlVehicles.entries()) {
     photos,
     status: "available",
     featured: vehicleIndex < 6,
+    sortOrder: xmlVehicles.length - vehicleIndex,
   };
   const existingVehicle = existingVehicles.get(id);
   vehicles.push({

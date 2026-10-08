@@ -51,6 +51,7 @@ function fromEntity(entity: TableEntityResult<Record<string, unknown>>): Vehicle
     photos: JSON.parse(String(entity.photos ?? "[]")),
     status: entity.status,
     featured: entity.featured,
+    sortOrder: entity.sortOrder,
     createdAt: entity.createdAt,
     updatedAt: entity.updatedAt,
   });
@@ -76,6 +77,7 @@ function toEntity(vehicle: Vehicle) {
     photos: JSON.stringify(vehicle.photos),
     status: vehicle.status,
     featured: vehicle.featured,
+    sortOrder: vehicle.sortOrder,
     createdAt: vehicle.createdAt,
     updatedAt: vehicle.updatedAt,
   };
@@ -105,7 +107,9 @@ export async function listVehicles(): Promise<Vehicle[]> {
   })) {
     vehicles.push(fromEntity(entity));
   }
-  return vehicles.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  return vehicles.sort(
+    (a, b) => b.sortOrder - a.sortOrder || b.createdAt.localeCompare(a.createdAt),
+  );
 }
 
 export async function getVehicleBySlug(slug: string) {
