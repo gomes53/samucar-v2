@@ -3,17 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, Phone } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { site } from "@/lib/site";
+
+const homeReloadKey = "samucar:home-reload";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    if (window.sessionStorage.getItem(homeReloadKey) !== "true") return;
+
+    window.sessionStorage.removeItem(homeReloadKey);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      window.history.scrollRestoration = "auto";
+    });
+  }, []);
+
+  const reloadHome = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (window.location.pathname !== "/") return;
+
+    event.preventDefault();
+    window.sessionStorage.setItem(homeReloadKey, "true");
+    window.history.scrollRestoration = "manual";
+    window.history.replaceState(null, "", "/");
+    window.location.reload();
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black text-white">
       <div className="shell flex h-20 items-center justify-between gap-4 sm:h-24 sm:gap-6">
-        <Link href="/" aria-label="Samucar — página inicial">
+        <Link href="/" aria-label="Samucar — página inicial" onClick={reloadHome}>
           <Image
             src="/brand/logo-wide.png"
             alt="Samucar"

@@ -67,6 +67,6 @@ button, summary, select { cursor: pointer; }
   .shell { width: min(100% - 1.25rem, 1240px); }
   .hero { background-position: 60% center; }
   .section-heading { font-size: 2.25rem; }
-  .filter-input { height: 2.8rem; padding-inline: .7rem; }
+  .filter-input { height: 2.8rem; padding-inline: .7rem; font-size: 1rem; }
   .admin-input { min-height: 3rem; font-size: 1rem; }
 }
