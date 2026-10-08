@@ -55,7 +55,12 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {vehicle.equipment.map((item) => <li key={item} className="flex items-start gap-3 text-zinc-700"><Check className="mt-0.5 shrink-0 text-[#a57b2d]" size={18} />{item}</li>)}
           </ul>
-          <p className="mt-8 border-t border-zinc-100 pt-6 text-xs leading-5 text-zinc-400">Este anúncio foi publicado por rotina informática. Todos os dados carecem de confirmação junto do vendedor. A informação não tem caráter vinculativo.</p>
+          <div className="mt-8 space-y-4 border-t border-zinc-100 pt-7 text-sm leading-6 text-zinc-600">
+            <p className="text-base font-black text-zinc-900">🎯 Tratamos do processo de financiamento.</p>
+            <p>Consultar condições comerciais de financiamento e preparação. Ao valor anunciado acresce despesas administrativas no valor de <strong className="text-zinc-900">350€ mais iva</strong></p>
+            <p>Este anúncio foi inserido por rotina informática, a informação/descrição não dispensa confirmação junto dos nossos comerciais, nem poderá ser considerada vinculativa.</p>
+            <p className="font-bold text-zinc-800">Automóveisamucar - Mediação Automóvel, Lda - Intermediários de crédito a título acessório - AUT 0002884 do B.P.</p>
+          </div>
         </div>
       </section>
       {related.length > 0 && <section className="bg-white py-20"><div className="shell"><p className="eyebrow text-[#8d6a27]">Também poderá gostar</p><h2 className="mb-10 text-3xl font-black">Outras viaturas</h2><div className="grid gap-6 md:grid-cols-3">{related.map((item) => <VehicleCard key={item.id} vehicle={item} />)}</div></div></section>}

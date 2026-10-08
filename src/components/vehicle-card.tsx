@@ -20,6 +20,11 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             {vehicle.status === "reserved" ? "Reservado" : "Vendido"}
           </span>
         )}
+        {vehicle.featured && (
+          <span className="absolute right-4 top-4 rounded-full bg-[#d8b45f] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-black shadow">
+            Destaque
+          </span>
+        )}
       </Link>
       <div className="p-4 sm:p-5">
         <p className="mb-1 text-xs font-semibold uppercase tracking-[.18em] text-[#9a762d]">{vehicle.brand}</p>
