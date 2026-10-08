@@ -28,7 +28,7 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
         </Link>
         <div className="my-4 grid grid-cols-2 gap-3 border-y border-zinc-100 py-4 text-xs text-zinc-600 min-[390px]:text-sm sm:my-5">
           <span className="spec"><CalendarDays />{vehicle.year}</span>
-          <span className="spec"><Gauge />{formatNumber(vehicle.kms)} km</span>
+          <span className="spec"><Gauge />{vehicle.kms ? `${formatNumber(vehicle.kms)} km` : "Km sob consulta"}</span>
           <span className="spec"><Fuel />{vehicle.fuel}</span>
           <span className="spec"><GitBranch />{vehicle.transmission}</span>
         </div>

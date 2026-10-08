@@ -37,7 +37,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
             <p className="my-6 text-3xl font-black sm:my-8 sm:text-4xl">{formatPrice(vehicle.price)}</p>
             <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200">
               <Detail icon={<CalendarDays />} label="Ano" value={`${vehicle.month}/${vehicle.year}`} />
-              <Detail icon={<Gauge />} label="Quilómetros" value={`${formatNumber(vehicle.kms)} km`} />
+              <Detail icon={<Gauge />} label="Quilómetros" value={vehicle.kms ? `${formatNumber(vehicle.kms)} km` : "Sob consulta"} />
               <Detail icon={<Fuel />} label="Combustível" value={vehicle.fuel} />
               <Detail icon={<GitBranch />} label="Transmissão" value={vehicle.transmission} />
               <Detail icon={<Zap />} label="Potência" value={`${vehicle.horsepower} cv`} />
