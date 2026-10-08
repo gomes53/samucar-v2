@@ -2,6 +2,7 @@ import Link from "next/link";
 import { randomInt } from "node:crypto";
 import { ArrowDown, BadgeCheck, CarFront, Headphones, ShieldCheck } from "lucide-react";
 import { Inventory } from "@/components/inventory";
+import { StockLink } from "@/components/stock-link";
 import { listVehicles } from "@/lib/vehicles";
 
 export const dynamic = "force-dynamic";
@@ -39,10 +40,10 @@ export default async function Home() {
             Transparência, confiança e acompanhamento em cada quilómetro.
           </p>
           <div className="mt-8 grid max-w-sm grid-cols-2 gap-3 sm:mt-10 sm:flex sm:max-w-none sm:flex-wrap sm:gap-4">
-            <Link className="gold-button justify-center px-4 py-3.5 sm:px-6 sm:py-4" href="#stock"><CarFront size={19} />Ver viaturas</Link>
+            <StockLink className="gold-button justify-center px-4 py-3.5 sm:px-6 sm:py-4"><CarFront size={19} />Ver viaturas</StockLink>
             <Link className="outline-button px-4 py-3.5 sm:px-6 sm:py-4" href="/contactos">Fale connosco</Link>
           </div>
-          <a href="#stock" className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-zinc-400" aria-label="Ver stock"><ArrowDown /></a>
+          <StockLink className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-zinc-400" ariaLabel="Ver stock"><ArrowDown /></StockLink>
         </div>
       </section>
 

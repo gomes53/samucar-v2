@@ -56,11 +56,30 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
 
   return (
     <div>
-      <div className="mb-8 rounded-2xl border border-black/8 bg-white p-4 shadow-sm lg:flex lg:items-center lg:gap-3">
+      <form
+        className="mb-8 rounded-2xl border border-black/8 bg-white p-4 shadow-sm lg:flex lg:items-center lg:gap-3"
+        role="search"
+        onSubmit={(event) => {
+          event.preventDefault();
+          event.currentTarget.querySelector("input")?.blur();
+        }}
+      >
         <label className="relative mb-3 block flex-1 lg:mb-0">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={19} />
           <span className="sr-only">Pesquisar viatura</span>
-          <input className="filter-input search-input w-full" placeholder="Marca, modelo ou versão…" value={query} onChange={(event) => updateFilter(setQuery, event.target.value)} />
+          <input
+            type="search"
+            enterKeyHint="search"
+            className="filter-input search-input w-full"
+            placeholder="Marca, modelo ou versão…"
+            value={query}
+            onChange={(event) => updateFilter(setQuery, event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key !== "Enter") return;
+              event.preventDefault();
+              event.currentTarget.blur();
+            }}
+          />
         </label>
         <div className="grid grid-cols-2 gap-3 lg:flex">
           <FilterSelect label="Marca" value={brand} onChange={(value) => updateFilter(setBrand, value)} options={brands} />
@@ -76,7 +95,7 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
             </select>
           </label>
         </div>
-      </div>
+      </form>
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm text-zinc-500"><strong className="text-zinc-900">{filtered.length}</strong> viaturas encontradas</p>
         {hasFilters && <button className="flex items-center gap-1 text-sm font-semibold text-[#8d6a27]" onClick={reset}><X size={16} />Limpar filtros</button>}
