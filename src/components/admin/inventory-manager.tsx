@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { LoaderCircle, LogOut, Pencil, Plus, Star, Trash2, Upload, X } from "lucide-react";
+import { EyeOff, LoaderCircle, LogOut, Pencil, Plus, RotateCcw, Star, Trash2, Upload, X } from "lucide-react";
 import { useState, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { formatNumber, formatPrice } from "@/lib/format";
@@ -22,6 +22,7 @@ const emptyVehicle = (): VehicleInput => ({
   transmission: "Manual",
   equipment: [],
   photos: [],
+  active: true,
   status: "available",
   featured: false,
   sortOrder: Date.now(),
@@ -33,10 +34,14 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
   const [draft, setDraft] = useState<VehicleInput | null>(null);
   const [equipment, setEquipment] = useState("");
   const [query, setQuery] = useState("");
+  const [section, setSection] = useState<"active" | "inactive">("active");
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
-  const visible = vehicles.filter((vehicle) => `${vehicle.brand} ${vehicle.model} ${vehicle.version}`.toLowerCase().includes(query.toLowerCase()));
+  const activeVehicles = vehicles.filter((vehicle) => vehicle.active);
+  const inactiveVehicles = vehicles.filter((vehicle) => !vehicle.active);
+  const sectionVehicles = section === "active" ? activeVehicles : inactiveVehicles;
+  const visible = sectionVehicles.filter((vehicle) => `${vehicle.brand} ${vehicle.model} ${vehicle.version}`.toLowerCase().includes(query.toLowerCase()));
 
   const edit = (vehicle: Vehicle) => {
     setDraft(vehicle);
@@ -94,8 +99,25 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
     }
   };
 
-  const remove = async (vehicle: Vehicle) => {
-    if (!confirm(`Eliminar definitivamente ${vehicle.brand} ${vehicle.model}?`)) return;
+  const setActive = async (vehicle: Vehicle, active: boolean) => {
+    const action = active ? "reativar" : "desativar";
+    if (!active && !confirm(`Desativar ${vehicle.brand} ${vehicle.model}? A viatura deixará de aparecer no site.`)) return;
+    setError("");
+    const response = await fetch("/api/admin/vehicles", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...vehicle, active }),
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      setError(result.error ?? `Não foi possível ${action} a viatura.`);
+      return;
+    }
+    setVehicles((current) => current.map((item) => item.id === vehicle.id ? result.vehicle : item));
+  };
+
+  const removePermanently = async (vehicle: Vehicle) => {
+    if (!confirm(`Eliminar definitivamente ${vehicle.brand} ${vehicle.model}?\n\nEsta ação apaga também as fotografias e não pode ser anulada.`)) return;
     setError("");
     const response = await fetch(`/api/admin/vehicles/${encodeURIComponent(vehicle.id)}`, { method: "DELETE" });
     const result = await response.json();
@@ -133,10 +155,26 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
       </header>
       <main className="shell py-10">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div><h1 className="text-3xl font-black">{vehicles.length} viaturas</h1><p className="text-sm text-zinc-500">Adicione, edite e remova o stock publicado.</p></div>
+          <div><h1 className="text-3xl font-black">{activeVehicles.length} viaturas ativas</h1><p className="text-sm text-zinc-500">As viaturas desativadas não aparecem no site e podem ser restauradas.</p></div>
           <button className="gold-button justify-center px-5 py-3" onClick={create}><Plus size={18} />Adicionar viatura</button>
         </div>
         {error && <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{error}</div>}
+        <div className="mb-6 flex rounded-xl border border-zinc-200 bg-white p-1 sm:w-fit">
+          <button
+            type="button"
+            className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-bold sm:flex-none ${section === "active" ? "bg-black text-white" : "text-zinc-600 hover:bg-zinc-50"}`}
+            onClick={() => setSection("active")}
+          >
+            Ativas ({activeVehicles.length})
+          </button>
+          <button
+            type="button"
+            className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-bold sm:flex-none ${section === "inactive" ? "bg-black text-white" : "text-zinc-600 hover:bg-zinc-50"}`}
+            onClick={() => setSection("inactive")}
+          >
+            Desativadas ({inactiveVehicles.length})
+          </button>
+        </div>
         <input className="admin-input mb-6 max-w-lg" placeholder="Pesquisar stock…" value={query} onChange={(event) => setQuery(event.target.value)} />
         <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white">
           <table className="w-full min-w-[760px] text-left text-sm">
@@ -148,7 +186,19 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
                   <td className="p-4 text-zinc-600">{vehicle.year}<br /><span className="text-xs">{formatNumber(vehicle.kms)} km</span></td>
                   <td className="p-4 font-bold">{formatPrice(vehicle.price)}</td>
                   <td className="p-4"><Status status={vehicle.status} /></td>
-                  <td className="p-4"><div className="flex justify-end gap-2"><button className="rounded-lg border border-zinc-200 p-2 hover:bg-zinc-50" onClick={() => edit(vehicle)} aria-label="Editar"><Pencil size={17} /></button><button className="rounded-lg border border-red-100 p-2 text-red-600 hover:bg-red-50" onClick={() => remove(vehicle)} aria-label="Eliminar"><Trash2 size={17} /></button></div></td>
+                  <td className="p-4">
+                    <div className="flex justify-end gap-2">
+                      <button className="rounded-lg border border-zinc-200 p-2 hover:bg-zinc-50" onClick={() => edit(vehicle)} aria-label="Editar"><Pencil size={17} /></button>
+                      {vehicle.active ? (
+                        <button className="rounded-lg border border-amber-200 p-2 text-amber-700 hover:bg-amber-50" onClick={() => void setActive(vehicle, false)} aria-label="Desativar" title="Desativar"><EyeOff size={17} /></button>
+                      ) : (
+                        <>
+                          <button className="rounded-lg border border-emerald-200 p-2 text-emerald-700 hover:bg-emerald-50" onClick={() => void setActive(vehicle, true)} aria-label="Reativar" title="Reativar"><RotateCcw size={17} /></button>
+                          <button className="rounded-lg border border-red-100 p-2 text-red-600 hover:bg-red-50" onClick={() => void removePermanently(vehicle)} aria-label="Eliminar definitivamente" title="Eliminar definitivamente"><Trash2 size={17} /></button>
+                        </>
+                      )}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

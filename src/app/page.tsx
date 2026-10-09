@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const vehicles = await listVehicles();
   const premiumVehicles = vehicles
-    .filter((vehicle) => vehicle.status === "available" && vehicle.photos.length > 0)
+    .filter((vehicle) => vehicle.active && vehicle.status === "available" && vehicle.photos.length > 0)
     .sort((a, b) => b.price - a.price)
     .slice(0, 10);
   const heroVehicle =

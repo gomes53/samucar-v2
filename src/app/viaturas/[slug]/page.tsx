@@ -21,7 +21,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
   const vehicle = await getVehicleBySlug((await params).slug);
   if (!vehicle) notFound();
   const allVehicles = await listVehicles();
-  const related = allVehicles.filter((item) => item.id !== vehicle.id && item.status !== "sold").slice(0, 3);
+  const related = allVehicles.filter((item) => item.active && item.id !== vehicle.id && item.status !== "sold").slice(0, 3);
   const title = vehicleTitle(vehicle);
 
   return (

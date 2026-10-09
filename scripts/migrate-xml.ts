@@ -132,6 +132,7 @@ for (const [vehicleIndex, item] of xmlVehicles.entries()) {
     transmission: String(item.Transmission),
     equipment: String(item.EquipmentList ?? "").split(",").map((value) => value.trim()).filter(Boolean),
     photos,
+    active: true,
     status: "available",
     featured: vehicleIndex < 6,
     sortOrder: xmlVehicles.length - vehicleIndex,

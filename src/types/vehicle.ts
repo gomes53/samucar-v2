@@ -20,6 +20,7 @@ export const vehicleSchema = z.object({
   photos: z
     .array(z.string().refine((value) => value.startsWith("/") || URL.canParse(value), "Fotografia inválida"))
     .min(1, "Adicione pelo menos uma fotografia"),
+  active: z.coerce.boolean().default(true),
   status: vehicleStatusSchema.default("available"),
   featured: z.coerce.boolean().default(false),
   sortOrder: z.coerce.number().default(0),

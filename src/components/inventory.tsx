@@ -21,6 +21,7 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("pt");
     return vehicles
+      .filter((vehicle) => vehicle.active)
       .filter((vehicle) => vehicle.status !== "sold")
       .filter((vehicle) => !brand || vehicle.brand === brand)
       .filter((vehicle) => !fuel || vehicle.fuel === fuel)

@@ -9,6 +9,12 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
     const id = (await params).id;
     const vehicle = (await listVehicles()).find((item) => item.id === id);
     if (!vehicle) return NextResponse.json({ error: "Viatura não encontrada." }, { status: 404 });
+    if (vehicle.active) {
+      return NextResponse.json(
+        { error: "Desative a viatura antes de a eliminar definitivamente." },
+        { status: 409 },
+      );
+    }
     for (const photo of vehicle.photos) await deleteVehicleImage(photo);
     await deleteVehicle(id);
     return NextResponse.json({ success: true });

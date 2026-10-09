@@ -49,6 +49,7 @@ function fromEntity(entity: TableEntityResult<Record<string, unknown>>): Vehicle
     transmission: entity.transmission,
     equipment: JSON.parse(String(entity.equipment ?? "[]")),
     photos: JSON.parse(String(entity.photos ?? "[]")),
+    active: entity.active ?? true,
     status: entity.status,
     featured: entity.featured,
     sortOrder: entity.sortOrder,
@@ -75,6 +76,7 @@ function toEntity(vehicle: Vehicle) {
     transmission: vehicle.transmission,
     equipment: JSON.stringify(vehicle.equipment),
     photos: JSON.stringify(vehicle.photos),
+    active: vehicle.active,
     status: vehicle.status,
     featured: vehicle.featured,
     sortOrder: vehicle.sortOrder,
@@ -114,7 +116,7 @@ export async function listVehicles(): Promise<Vehicle[]> {
 
 export async function getVehicleBySlug(slug: string) {
   const vehicles = await listVehicles();
-  return vehicles.find((vehicle) => vehicle.slug === slug) ?? null;
+  return vehicles.find((vehicle) => vehicle.active && vehicle.slug === slug) ?? null;
 }
 
 export async function saveVehicle(rawInput: VehicleInput): Promise<Vehicle> {

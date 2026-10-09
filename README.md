@@ -14,6 +14,12 @@ npm run dev
 
 Abra `http://localhost:3000`. Sem configuração adicional, a palavra-passe local de `/admin` é `admin`.
 
+## Gestão de viaturas
+
+- **Desativar** retira uma viatura do catálogo e bloqueia a respetiva página pública sem apagar dados ou fotografias.
+- As viaturas desativadas ficam no separador **Desativadas**, onde podem ser reativadas.
+- A eliminação definitiva, incluindo as fotografias, só está disponível para viaturas previamente desativadas.
+
 ## Fotografias
 
 - A primeira fotografia da lista é sempre a capa da viatura.
