@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { EyeOff, LoaderCircle, LogOut, Pencil, Plus, RotateCcw, Star, Trash2, Upload, X } from "lucide-react";
+import { ArrowUpToLine, EyeOff, LoaderCircle, LogOut, Pencil, Plus, RotateCcw, Star, Trash2, Upload, X } from "lucide-react";
 import { useState, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { formatNumber, formatPrice } from "@/lib/format";
@@ -36,6 +36,7 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
   const [query, setQuery] = useState("");
   const [section, setSection] = useState<"active" | "inactive">("active");
   const [saving, setSaving] = useState(false);
+  const [promotingId, setPromotingId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const activeVehicles = vehicles.filter((vehicle) => vehicle.active);
@@ -116,6 +117,27 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
     setVehicles((current) => current.map((item) => item.id === vehicle.id ? result.vehicle : item));
   };
 
+  const promote = async (vehicle: Vehicle) => {
+    setPromotingId(vehicle.id);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/vehicles", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...vehicle, sortOrder: Date.now() }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? "Não foi possível trazer a viatura para o topo.");
+      setVehicles((current) => current
+        .map((item) => item.id === vehicle.id ? result.vehicle : item)
+        .sort((a, b) => b.sortOrder - a.sortOrder || b.createdAt.localeCompare(a.createdAt)));
+    } catch (promoteError) {
+      setError(promoteError instanceof Error ? promoteError.message : "Erro ao atualizar a ordem.");
+    } finally {
+      setPromotingId(null);
+    }
+  };
+
   const removePermanently = async (vehicle: Vehicle) => {
     if (!confirm(`Eliminar definitivamente ${vehicle.brand} ${vehicle.model}?\n\nEsta ação apaga também as fotografias e não pode ser anulada.`)) return;
     setError("");
@@ -190,7 +212,10 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
                     <div className="flex justify-end gap-2">
                       <button className="rounded-lg border border-zinc-200 p-2 hover:bg-zinc-50" onClick={() => edit(vehicle)} aria-label="Editar"><Pencil size={17} /></button>
                       {vehicle.active ? (
-                        <button className="rounded-lg border border-amber-200 p-2 text-amber-700 hover:bg-amber-50" onClick={() => void setActive(vehicle, false)} aria-label="Desativar" title="Desativar"><EyeOff size={17} /></button>
+                        <>
+                          <button className="rounded-lg border border-[#d8b45f]/60 p-2 text-[#8d6a27] hover:bg-amber-50 disabled:opacity-50" onClick={() => void promote(vehicle)} aria-label="Trazer para o topo" title="Trazer para o topo" disabled={promotingId !== null}>{promotingId === vehicle.id ? <LoaderCircle className="animate-spin" size={17} /> : <ArrowUpToLine size={17} />}</button>
+                          <button className="rounded-lg border border-amber-200 p-2 text-amber-700 hover:bg-amber-50" onClick={() => void setActive(vehicle, false)} aria-label="Desativar" title="Desativar"><EyeOff size={17} /></button>
+                        </>
                       ) : (
                         <>
                           <button className="rounded-lg border border-emerald-200 p-2 text-emerald-700 hover:bg-emerald-50" onClick={() => void setActive(vehicle, true)} aria-label="Reativar" title="Reativar"><RotateCcw size={17} /></button>

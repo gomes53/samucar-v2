@@ -19,6 +19,7 @@ Abra `http://localhost:3000`. Sem configuração adicional, a palavra-passe loca
 - **Desativar** retira uma viatura do catálogo e bloqueia a respetiva página pública sem apagar dados ou fotografias.
 - As viaturas desativadas ficam no separador **Desativadas**, onde podem ser reativadas.
 - A eliminação definitiva, incluindo as fotografias, só está disponível para viaturas previamente desativadas.
+- **Trazer para o topo** republica uma viatura ativa no início do catálogo sem alterar os restantes dados.
 
 ## Fotografias
 
