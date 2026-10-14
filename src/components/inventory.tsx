@@ -11,12 +11,23 @@ const pageSize = 20;
 export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("");
+  const [model, setModel] = useState("");
   const [fuel, setFuel] = useState("");
-  const [transmission, setTransmission] = useState("");
   const [sort, setSort] = useState<Sort>("recent");
   const [visibleCount, setVisibleCount] = useState(pageSize);
-  const brands = [...new Set(vehicles.map((vehicle) => vehicle.brand))].sort();
-  const fuels = [...new Set(vehicles.map((vehicle) => vehicle.fuel))].sort();
+  const stockVehicles = vehicles.filter((vehicle) => vehicle.active && vehicle.status !== "sold");
+  const brands = [...new Set(stockVehicles.map((vehicle) => vehicle.brand))].sort();
+  const fuels = [...new Set(stockVehicles.map((vehicle) => vehicle.fuel))].sort();
+  const models = useMemo(() => {
+    if (!brand) return [];
+    const counts = new Map<string, number>();
+    stockVehicles
+      .filter((vehicle) => vehicle.brand === brand)
+      .forEach((vehicle) => counts.set(vehicle.model, (counts.get(vehicle.model) ?? 0) + 1));
+    return [...counts.entries()]
+      .sort(([left], [right]) => left.localeCompare(right, "pt"))
+      .map(([value, count]) => ({ value, label: `${value} (${count})` }));
+  }, [brand, stockVehicles]);
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("pt");
@@ -24,8 +35,8 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
       .filter((vehicle) => vehicle.active)
       .filter((vehicle) => vehicle.status !== "sold")
       .filter((vehicle) => !brand || vehicle.brand === brand)
+      .filter((vehicle) => !model || vehicle.model === model)
       .filter((vehicle) => !fuel || vehicle.fuel === fuel)
-      .filter((vehicle) => !transmission || vehicle.transmission === transmission)
       .filter(
         (vehicle) =>
           !normalized ||
@@ -39,14 +50,14 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         if (sort === "year") return b.year - a.year;
         return b.sortOrder - a.sortOrder || b.createdAt.localeCompare(a.createdAt);
       });
-  }, [vehicles, query, brand, fuel, transmission, sort]);
+  }, [vehicles, query, brand, model, fuel, sort]);
 
-  const hasFilters = Boolean(query || brand || fuel || transmission);
+  const hasFilters = Boolean(query || brand || model || fuel);
   const reset = () => {
     setQuery("");
     setBrand("");
+    setModel("");
     setFuel("");
-    setTransmission("");
     setVisibleCount(pageSize);
   };
   const updateFilter = (setter: (value: string) => void, value: string) => {
@@ -83,9 +94,9 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
           />
         </label>
         <div className="grid grid-cols-2 gap-3 lg:flex">
-          <FilterSelect label="Marca" value={brand} onChange={(value) => updateFilter(setBrand, value)} options={brands} />
+          <FilterSelect label="Marca" value={brand} onChange={(value) => { setBrand(value); setModel(""); setVisibleCount(pageSize); }} options={brands} />
+          <ModelFilterSelect value={model} onChange={(value) => updateFilter(setModel, value)} options={models} disabled={!brand} />
           <FilterSelect label="Combustível" value={fuel} onChange={(value) => updateFilter(setFuel, value)} options={fuels} />
-          <FilterSelect label="Transmissão" value={transmission} onChange={(value) => updateFilter(setTransmission, value)} options={["Automático", "Manual"]} />
           <label>
             <span className="sr-only">Ordenar</span>
             <select className="filter-input w-full" value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(pageSize); }}>
@@ -126,6 +137,18 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         </div>
       )}
     </div>
+  );
+}
+
+function ModelFilterSelect({ value, onChange, options, disabled }: { value: string; onChange: (value: string) => void; options: { value: string; label: string }[]; disabled: boolean }) {
+  return (
+    <label>
+      <span className="sr-only">Modelo</span>
+      <select className="filter-input w-full disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-400 lg:w-40" value={value} onChange={(event) => onChange(event.target.value)} disabled={disabled}>
+        <option value="">{disabled ? "Escolha uma marca" : "Modelo"}</option>
+        {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+      </select>
+    </label>
   );
 }
 
