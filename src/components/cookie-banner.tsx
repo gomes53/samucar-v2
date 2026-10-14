@@ -56,7 +56,7 @@ export function CookieBanner() {
             setPreferencesOpen(false);
           }}
         >
-          Recusar análise
+          Recusar cookies
         </button>
         <button
           type="button"
@@ -66,7 +66,7 @@ export function CookieBanner() {
             setPreferencesOpen(false);
           }}
         >
-          Aceitar análise
+          Aceitar cookies
         </button>
       </div>
     </aside>
