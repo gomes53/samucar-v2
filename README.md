@@ -21,6 +21,13 @@ Abra `http://localhost:3000`. Sem configuração adicional, a palavra-passe loca
 - A eliminação definitiva, incluindo as fotografias, só está disponível para viaturas previamente desativadas.
 - **Trazer para o topo** republica uma viatura ativa no início do catálogo sem alterar os restantes dados.
 
+## Analytics e páginas de marca
+
+- O Google Tag Manager é configurado através de `NEXT_PUBLIC_GTM_ID`.
+- O contentor só é carregado depois de o visitante aceitar cookies de análise; a preferência pode ser alterada no rodapé.
+- O site envia eventos para a `dataLayer`, incluindo `virtual_page_view`, `view_vehicle`, contactos, filtros e carregamento de mais viaturas.
+- Cada marca com stock disponível recebe automaticamente uma página indexável, por exemplo `/bmw`, e é incluída no sitemap.
+
 ## Fotografias
 
 - A primeira fotografia da lista é sempre a capa da viatura.
@@ -85,3 +92,5 @@ Consulte `.env.example`. Em produção são obrigatórias:
 - `AZURE_STORAGE_CONNECTION_STRING`
 - `AZURE_STORAGE_TABLE_NAME`
 - `AZURE_STORAGE_CONTAINER_NAME`
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_GTM_ID`

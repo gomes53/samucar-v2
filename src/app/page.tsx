@@ -3,12 +3,14 @@ import { randomInt } from "node:crypto";
 import { ArrowDown, BadgeCheck, CarFront, Headphones, ShieldCheck } from "lucide-react";
 import { Inventory } from "@/components/inventory";
 import { StockLink } from "@/components/stock-link";
+import { listStockBrands } from "@/lib/brands";
 import { listVehicles } from "@/lib/vehicles";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const vehicles = await listVehicles();
+  const brands = listStockBrands(vehicles);
   const premiumVehicles = vehicles
     .filter((vehicle) => vehicle.active && vehicle.status === "available" && vehicle.photos.length > 0)
     .sort((a, b) => b.price - a.price)
@@ -63,6 +65,22 @@ export default async function Home() {
             <p className="mt-4 leading-7 text-zinc-600">Pesquise por marca, combustível ou transmissão e descubra todas as viaturas disponíveis.</p>
           </div>
           <Inventory vehicles={vehicles} />
+          {brands.length > 0 && (
+            <nav className="mt-16 border-t border-zinc-200 pt-10" aria-label="Viaturas por marca">
+              <h2 className="text-xl font-black text-zinc-900">Viaturas por marca</h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {brands.map((brand) => (
+                  <Link
+                    key={brand.slug}
+                    href={`/${brand.slug}`}
+                    className="rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-700 transition hover:border-[#b88932] hover:text-[#8d6a27]"
+                  >
+                    {brand.name} ({brand.count})
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          )}
         </div>
       </section>
 

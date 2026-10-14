@@ -3,21 +3,25 @@
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { VehicleCard } from "@/components/vehicle-card";
+import { trackEvent } from "@/lib/analytics";
 import type { Vehicle } from "@/types/vehicle";
 
 type Sort = "recent" | "price-asc" | "price-desc" | "year";
 const pageSize = 20;
 
-export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
+export function Inventory({ vehicles, fixedBrand = "" }: { vehicles: Vehicle[]; fixedBrand?: string }) {
   const [query, setQuery] = useState("");
-  const [brand, setBrand] = useState("");
+  const [brand, setBrand] = useState(fixedBrand);
   const [model, setModel] = useState("");
   const [fuel, setFuel] = useState("");
   const [sort, setSort] = useState<Sort>("recent");
   const [visibleCount, setVisibleCount] = useState(pageSize);
-  const stockVehicles = vehicles.filter((vehicle) => vehicle.active && vehicle.status !== "sold");
-  const brands = [...new Set(stockVehicles.map((vehicle) => vehicle.brand))].sort();
-  const fuels = [...new Set(stockVehicles.map((vehicle) => vehicle.fuel))].sort();
+  const stockVehicles = useMemo(
+    () => vehicles.filter((vehicle) => vehicle.active && vehicle.status !== "sold"),
+    [vehicles],
+  );
+  const brands = useMemo(() => [...new Set(stockVehicles.map((vehicle) => vehicle.brand))].sort(), [stockVehicles]);
+  const fuels = useMemo(() => [...new Set(stockVehicles.map((vehicle) => vehicle.fuel))].sort(), [stockVehicles]);
   const models = useMemo(() => {
     if (!brand) return [];
     const counts = new Map<string, number>();
@@ -52,17 +56,18 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
       });
   }, [vehicles, query, brand, model, fuel, sort]);
 
-  const hasFilters = Boolean(query || brand || model || fuel);
+  const hasFilters = Boolean(query || model || fuel || (!fixedBrand && brand));
   const reset = () => {
     setQuery("");
-    setBrand("");
+    setBrand(fixedBrand);
     setModel("");
     setFuel("");
     setVisibleCount(pageSize);
   };
-  const updateFilter = (setter: (value: string) => void, value: string) => {
+  const updateFilter = (setter: (value: string) => void, value: string, eventName?: string) => {
     setter(value);
     setVisibleCount(pageSize);
+    if (value && eventName) trackEvent(eventName, { value });
   };
   const visibleVehicles = filtered.slice(0, visibleCount);
 
@@ -74,6 +79,7 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         onSubmit={(event) => {
           event.preventDefault();
           event.currentTarget.querySelector("input")?.blur();
+          if (query.trim()) trackEvent("search_vehicle", { search_term: query.trim() });
         }}
       >
         <label className="relative mb-3 block flex-1 lg:mb-0">
@@ -94,9 +100,9 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
           />
         </label>
         <div className="grid grid-cols-2 gap-3 lg:flex">
-          <FilterSelect label="Marca" value={brand} onChange={(value) => { setBrand(value); setModel(""); setVisibleCount(pageSize); }} options={brands} />
-          <ModelFilterSelect value={model} onChange={(value) => updateFilter(setModel, value)} options={models} disabled={!brand} />
-          <FilterSelect label="Combustível" value={fuel} onChange={(value) => updateFilter(setFuel, value)} options={fuels} />
+          {!fixedBrand && <FilterSelect label="Marca" value={brand} onChange={(value) => { setBrand(value); setModel(""); setVisibleCount(pageSize); if (value) trackEvent("filter_brand", { brand: value }); }} options={brands} />}
+          <ModelFilterSelect value={model} onChange={(value) => updateFilter(setModel, value, "filter_model")} options={models} disabled={!brand} />
+          <FilterSelect label="Combustível" value={fuel} onChange={(value) => updateFilter(setFuel, value, "filter_fuel")} options={fuels} />
           <label>
             <span className="sr-only">Ordenar</span>
             <select className="filter-input w-full" value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(pageSize); }}>
@@ -127,7 +133,10 @@ export function Inventory({ vehicles }: { vehicles: Vehicle[] }) {
         <div className="mt-10 text-center">
           <button
             className="rounded-xl border border-zinc-300 bg-white px-7 py-3.5 text-sm font-black text-zinc-800 shadow-sm transition hover:border-[#b88932] hover:text-[#8d6a27]"
-            onClick={() => setVisibleCount((count) => count + pageSize)}
+            onClick={() => {
+              setVisibleCount((count) => count + pageSize);
+              trackEvent("load_more_vehicles", { visible_before: visibleCount, total_results: filtered.length });
+            }}
           >
             Carregar mais viaturas
           </button>

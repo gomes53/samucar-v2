@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { CookiePreferencesButton } from "@/components/cookie-banner";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -21,7 +23,7 @@ export function Footer() {
           <h2 className="footer-title">Contactos</h2>
           <ul className="space-y-4 text-sm">
             <li><a className="footer-link" href={site.mapsUrl} target="_blank" rel="noreferrer"><MapPin size={18} />{site.address}</a></li>
-            <li><a className="footer-link" href={site.phoneHref}><Phone size={18} />{site.phone}</a></li>
+            <li><TrackedAnchor className="footer-link" href={site.phoneHref} eventName="contact_phone" eventParameters={{ location: "footer" }}><Phone size={18} />{site.phone}</TrackedAnchor></li>
             <li><a className="footer-link" href={`mailto:${site.email}`}><Mail size={18} />{site.email}</a></li>
           </ul>
         </div>
@@ -39,6 +41,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/termos">Termos de uso</Link>
             <Link href="/cookies">Cookies</Link>
+            <CookiePreferencesButton />
             <Link href="/privacidade">Privacidade</Link>
             <Link href="/intermediacao-de-credito">Intermediação de crédito</Link>
             <a href="https://www.livroreclamacoes.pt/inicio" target="_blank" rel="noreferrer">Livro de reclamações</a>

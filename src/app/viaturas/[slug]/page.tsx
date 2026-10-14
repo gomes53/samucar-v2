@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, Check, Fuel, Gauge, GitBranch, MessageCircle, Phone, Settings2, Zap } from "lucide-react";
+import { AnalyticsEvent } from "@/components/analytics";
 import { Gallery } from "@/components/gallery";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 import { VehicleCard } from "@/components/vehicle-card";
-import { formatNumber, formatPrice, vehicleTitle } from "@/lib/format";
+import { formatNumber, formatPrice, slugify, vehicleTitle } from "@/lib/format";
 import { site } from "@/lib/site";
 import { getVehicleBySlug, listVehicles } from "@/lib/vehicles";
 
@@ -26,7 +28,8 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="bg-[#f6f5f2]">
-      <div className="shell overflow-hidden py-4 text-xs text-zinc-500 sm:py-5 sm:text-sm"><Link href="/">Início</Link> <span className="mx-1 sm:mx-2">/</span> <Link href="/#stock">Viaturas</Link> <span className="mx-1 sm:mx-2">/</span> <span className="text-zinc-900">{vehicle.brand} {vehicle.model}</span></div>
+      <AnalyticsEvent name="view_vehicle" parameters={{ vehicle_id: vehicle.id, vehicle_name: title, brand: vehicle.brand, value: vehicle.price, currency: "EUR" }} />
+      <div className="shell overflow-hidden py-4 text-xs text-zinc-500 sm:py-5 sm:text-sm"><Link href="/">Início</Link> <span className="mx-1 sm:mx-2">/</span> <Link href={`/${slugify(vehicle.brand)}`}>{vehicle.brand}</Link> <span className="mx-1 sm:mx-2">/</span> <span className="text-zinc-900">{vehicle.model}</span></div>
       <section className="shell pb-14 sm:pb-20">
         <div className="grid gap-10 lg:grid-cols-[1.45fr_.75fr]">
           <Gallery photos={vehicle.photos} title={title} />
@@ -44,8 +47,8 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
               <Detail icon={<Settings2 />} label="Cilindrada" value={vehicle.displacement ? `${formatNumber(vehicle.displacement)} cc` : "—"} />
             </div>
             <div className="mt-6 grid gap-3">
-              <a className="gold-button justify-center py-4" href={`${site.whatsappUrl}%20${encodeURIComponent(title)}`} target="_blank" rel="noreferrer"><MessageCircle size={19} />Pedir informações</a>
-              <a className="flex items-center justify-center gap-2 rounded-xl border border-zinc-300 py-4 font-bold" href={site.phoneHref}><Phone size={19} />{site.phone}</a>
+              <TrackedAnchor className="gold-button justify-center py-4" href={`${site.whatsappUrl}%20${encodeURIComponent(title)}`} target="_blank" rel="noreferrer" eventName="contact_whatsapp" eventParameters={{ vehicle_id: vehicle.id, vehicle_name: title }}><MessageCircle size={19} />Pedir informações</TrackedAnchor>
+              <TrackedAnchor className="flex items-center justify-center gap-2 rounded-xl border border-zinc-300 py-4 font-bold" href={site.phoneHref} eventName="contact_phone" eventParameters={{ vehicle_id: vehicle.id, vehicle_name: title }}><Phone size={19} />{site.phone}</TrackedAnchor>
             </div>
             <p className="mt-4 text-center text-xs text-zinc-400">Custo de chamada para a rede móvel nacional.</p>
           </aside>

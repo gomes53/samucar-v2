@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
+import { Analytics } from "@/components/analytics";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const gtmContainerId = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-T24NBQBJ";
+
   return (
     <html lang="pt">
       <body className={`${manrope.variable} ${playfair.variable}`}>
@@ -29,6 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main>{children}</main>
         <Footer />
         <CookieBanner />
+        <Analytics containerId={gtmContainerId} />
       </body>
     </html>
   );

@@ -1,4 +1,6 @@
 import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { AnalyticsEvent } from "@/components/analytics";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 import { site } from "@/lib/site";
 
 export const metadata = { title: "Contactos" };
@@ -6,6 +8,7 @@ export const metadata = { title: "Contactos" };
 export default function ContactsPage() {
   return (
     <section className="bg-[#f6f5f2] py-20 sm:py-28">
+      <AnalyticsEvent name="view_contact" />
       <div className="shell">
         <p className="eyebrow text-[#8d6a27]">Estamos ao seu dispor</p>
         <h1 className="section-heading max-w-3xl">Venha conhecer a sua próxima viatura.</h1>
@@ -28,5 +31,6 @@ export default function ContactsPage() {
 }
 
 function Contact({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href: string }) {
-  return <div className="flex gap-4"><span className="text-[#a77d2e]">{icon}</span><div><p className="text-xs font-bold uppercase tracking-widest text-zinc-400">{label}</p><a className="mt-1 block font-semibold hover:text-[#8d6a27]" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{value}</a></div></div>;
+  const eventName = label === "Telefone" ? "contact_phone" : label === "WhatsApp" ? "contact_whatsapp" : "contact_link";
+  return <div className="flex gap-4"><span className="text-[#a77d2e]">{icon}</span><div><p className="text-xs font-bold uppercase tracking-widest text-zinc-400">{label}</p><TrackedAnchor className="mt-1 block font-semibold hover:text-[#8d6a27]" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" eventName={eventName} eventParameters={{ location: "contacts", label }}>{value}</TrackedAnchor></div></div>;
 }

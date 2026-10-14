@@ -6,6 +6,12 @@ param location string = resourceGroup().location
 @description('Globally unique Static Web App name.')
 param siteName string = 'samucar-${uniqueString(resourceGroup().id)}'
 
+@description('Canonical public URL used in metadata and sitemaps.')
+param publicSiteUrl string = 'https://samucar.pt'
+
+@description('Google Tag Manager web container ID.')
+param gtmContainerId string = 'GTM-T24NBQBJ'
+
 @description('Password used to access /admin.')
 @secure()
 @minLength(12)
@@ -86,7 +92,8 @@ resource appSettings 'Microsoft.Web/staticSites/config@2023-12-01' = {
     AZURE_STORAGE_CONTAINER_NAME: images.name
     ADMIN_PASSWORD: adminPassword
     ADMIN_SESSION_SECRET: adminSessionSecret
-    NEXT_PUBLIC_SITE_URL: 'https://${staticSite.properties.defaultHostname}'
+    NEXT_PUBLIC_SITE_URL: publicSiteUrl
+    NEXT_PUBLIC_GTM_ID: gtmContainerId
   }
 }
 
