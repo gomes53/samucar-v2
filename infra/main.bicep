@@ -12,6 +12,10 @@ param publicSiteUrl string = 'https://samucar.pt'
 @description('Google Tag Manager web container ID.')
 param gtmContainerId string = 'GTM-T24NBQBJ'
 
+@description('Resend API key used to send vehicle request emails. Leave empty when email is configured separately.')
+@secure()
+param resendApiKey string = ''
+
 @description('Password used to access /admin.')
 @secure()
 @minLength(12)
@@ -85,7 +89,7 @@ resource staticSite 'Microsoft.Web/staticSites@2023-12-01' = {
 resource appSettings 'Microsoft.Web/staticSites/config@2023-12-01' = {
   parent: staticSite
   name: 'appsettings'
-  properties: {
+  properties: union({
     AZURE_STORAGE_ACCOUNT_NAME: storage.name
     AZURE_STORAGE_CONNECTION_STRING: 'DefaultEndpointsProtocol=https;AccountName=${storage.name};AccountKey=${storage.listKeys().keys[0].value};EndpointSuffix=${environment().suffixes.storage}'
     AZURE_STORAGE_TABLE_NAME: vehiclesTable.name
@@ -94,7 +98,11 @@ resource appSettings 'Microsoft.Web/staticSites/config@2023-12-01' = {
     ADMIN_SESSION_SECRET: adminSessionSecret
     NEXT_PUBLIC_SITE_URL: publicSiteUrl
     NEXT_PUBLIC_GTM_ID: gtmContainerId
-  }
+    LEAD_EMAIL_FROM: 'Samucar <pedidos@send.samucar.pt>'
+    LEAD_EMAIL_RECIPIENTS: 'automoveisamucar@gmail.com'
+  }, empty(resendApiKey) ? {} : {
+    RESEND_API_KEY: resendApiKey
+  })
 }
 
 output staticWebAppName string = staticSite.name

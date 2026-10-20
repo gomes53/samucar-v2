@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import { useEffect, useState, type MouseEvent } from "react";
 import { site } from "@/lib/site";
 
@@ -10,7 +10,11 @@ const homeReloadKey = "samucar:home-reload";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setServicesOpen(false);
+  };
 
   useEffect(() => {
     if (window.sessionStorage.getItem(homeReloadKey) !== "true") return;
@@ -46,13 +50,23 @@ export function Header() {
             priority
           />
         </Link>
-        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+        <nav className="hidden items-center gap-6 text-sm font-medium lg:flex">
           <Link className="nav-link" href="/#stock">Viaturas</Link>
+          <details className="group relative">
+            <summary className="nav-link flex list-none items-center gap-1.5 [&::-webkit-details-marker]:hidden">
+              Serviços
+              <ChevronDown className="transition group-open:rotate-180" size={15} />
+            </summary>
+            <div className="absolute left-1/2 top-8 w-64 -translate-x-1/2 rounded-xl border border-white/10 bg-[#111] p-2 shadow-2xl">
+              <Link className="block rounded-lg px-4 py-3 text-zinc-200 transition hover:bg-white/10 hover:text-[#e0be6f]" href="/compramos-o-seu-carro">Compramos o seu carro</Link>
+              <Link className="block rounded-lg px-4 py-3 text-zinc-200 transition hover:bg-white/10 hover:text-[#e0be6f]" href="/viatura-sob-encomenda">Viatura sob encomenda</Link>
+            </div>
+          </details>
           <Link className="nav-link" href="/#sobre">Sobre nós</Link>
           <Link className="nav-link" href="/contactos">Contactos</Link>
           <Link className="nav-link" href="/intermediacao-de-credito">Intermediação de Crédito</Link>
         </nav>
-        <span className="hidden sm:block">
+        <span className="hidden xl:block">
           <a
             href={site.phoneHref}
             className="gold-button"
@@ -62,7 +76,7 @@ export function Header() {
             {site.phone}
           </a>
         </span>
-        <div className="relative md:hidden">
+        <div className="relative lg:hidden">
           <button
             type="button"
             className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-white/20"
@@ -74,8 +88,23 @@ export function Header() {
             <span className="sr-only">Abrir menu</span>
           </button>
           {menuOpen && (
-            <nav id="mobile-navigation" className="absolute right-0 top-14 flex w-56 flex-col rounded-xl border border-white/10 bg-[#111] p-3 shadow-2xl">
+            <nav id="mobile-navigation" className="absolute right-0 top-14 flex max-h-[calc(100vh-7rem)] w-72 flex-col overflow-y-auto rounded-xl border border-white/10 bg-[#111] p-3 shadow-2xl">
               <Link className="rounded-lg px-4 py-3 hover:bg-white/10" href="/#stock" onClick={closeMenu}>Viaturas</Link>
+              <button
+                type="button"
+                className="flex items-center justify-between rounded-lg px-4 py-3 text-left hover:bg-white/10"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen((open) => !open)}
+              >
+                Serviços
+                <ChevronDown className={`transition ${servicesOpen ? "rotate-180" : ""}`} size={17} />
+              </button>
+              {servicesOpen && (
+                <div className="mb-1 ml-3 border-l border-white/15 pl-2">
+                  <Link className="block rounded-lg px-4 py-3 text-sm text-zinc-300 hover:bg-white/10" href="/compramos-o-seu-carro" onClick={closeMenu}>Compramos o seu carro</Link>
+                  <Link className="block rounded-lg px-4 py-3 text-sm text-zinc-300 hover:bg-white/10" href="/viatura-sob-encomenda" onClick={closeMenu}>Viatura sob encomenda</Link>
+                </div>
+              )}
               <Link className="rounded-lg px-4 py-3 hover:bg-white/10" href="/#sobre" onClick={closeMenu}>Sobre nós</Link>
               <Link className="rounded-lg px-4 py-3 hover:bg-white/10" href="/contactos" onClick={closeMenu}>Contactos</Link>
               <Link className="rounded-lg px-4 py-3 hover:bg-white/10" href="/intermediacao-de-credito" onClick={closeMenu}>Intermediação de Crédito</Link>

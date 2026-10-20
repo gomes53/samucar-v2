@@ -28,6 +28,15 @@ Abra `http://localhost:3000`. Sem configuração adicional, a palavra-passe loca
 - O site envia eventos para a `dataLayer`, incluindo `virtual_page_view`, `view_vehicle`, contactos, filtros e carregamento de mais viaturas.
 - Cada marca com stock disponível recebe automaticamente uma página indexável, por exemplo `/bmw`, e é incluída no sitemap.
 
+## Pedidos de clientes por email
+
+- `/compramos-o-seu-carro` recebe pedidos de avaliação de viaturas.
+- `/viatura-sob-encomenda` recebe pedidos de pesquisa com quilometragem e orçamento máximos.
+- Os pedidos são validados no servidor e enviados pelo Resend para os destinatários definidos em `LEAD_EMAIL_RECIPIENTS`.
+- A chave `RESEND_API_KEY` é secreta e deve existir apenas em `.env.local` ou nas app settings do Azure.
+- O subdomínio `send.samucar.pt` deve estar verificado no Resend antes de utilizar `Samucar <pedidos@send.samucar.pt>` como remetente. Adicione no Amen apenas os registos DNS fornecidos pelo Resend, sem substituir os registos MX/SPF existentes do serviço de email.
+- Os pedidos não são guardados em Table Storage; ficam apenas nas caixas de email dos destinatários e nos registos operacionais disponibilizados pelo fornecedor.
+
 ## Fotografias
 
 - A primeira fotografia da lista é sempre a capa da viatura.
@@ -94,3 +103,6 @@ Consulte `.env.example`. Em produção são obrigatórias:
 - `AZURE_STORAGE_CONTAINER_NAME`
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_GTM_ID`
+- `RESEND_API_KEY`
+- `LEAD_EMAIL_FROM`
+- `LEAD_EMAIL_RECIPIENTS`

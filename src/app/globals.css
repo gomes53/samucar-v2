@@ -63,10 +63,15 @@ button, summary, select { cursor: pointer; }
 .credit-details dd { margin-top: .25rem; color: #27272a; font-weight: 700; }
 .admin-input { width: 100%; border: 1px solid #d4d4d8; border-radius: .6rem; background: white; padding: .75rem .9rem; font-size: .9rem; }
 .admin-label { display: grid; gap: .4rem; color: #3f3f46; font-size: .78rem; font-weight: 700; }
+.request-label { display: block; margin-bottom: .45rem; color: #3f3f46; font-size: .78rem; font-weight: 800; }
+.request-input { width: 100%; min-height: 3.15rem; border: 1px solid #d4d4d8; border-radius: .7rem; background: #fafafa; padding-inline: .9rem; color: #27272a; font-size: .95rem; transition: border-color .2s, background-color .2s, box-shadow .2s; }
+.request-input:focus { border-color: #b88932; background: white; box-shadow: 0 0 0 3px rgba(184,137,50,.12); }
+.request-input::placeholder { color: #a1a1aa; }
 @media (max-width: 639px) {
   .shell { width: min(100% - 1.25rem, 1240px); }
   .hero { background-position: 60% center; }
   .section-heading { font-size: 2.25rem; }
   .filter-input { height: 2.8rem; padding-inline: .7rem; font-size: 1rem; }
   .admin-input { min-height: 3rem; font-size: 1rem; }
+  .request-input { font-size: 1rem; }
 }
