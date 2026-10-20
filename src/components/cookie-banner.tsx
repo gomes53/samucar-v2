@@ -44,7 +44,8 @@ export function CookieBanner() {
       <h2 className="text-base font-black text-white">A sua privacidade é importante</h2>
       <p className="mt-2 leading-6">
         Utilizamos cookies necessários ao funcionamento do site e, apenas com a sua autorização,
-        cookies de análise para compreender como o site é utilizado.{" "}
+        cookies de análise e marketing para compreender como o site é utilizado e medir a eficácia
+        das nossas campanhas.{" "}
         <Link className="text-[#e0be6f] underline" href="/cookies">Política de cookies</Link>
       </p>
       <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">

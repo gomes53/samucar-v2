@@ -27,9 +27,12 @@ function initializeConsentMode() {
 }
 
 function updateConsent(consent: AnalyticsConsent) {
+  const state = consent === "accepted" ? "granted" : "denied";
   window.gtag?.("consent", "update", {
-    ...deniedConsent,
-    analytics_storage: consent === "accepted" ? "granted" : "denied",
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
   });
 }
 
@@ -45,12 +48,19 @@ function loadTagManager(containerId: string) {
   document.head.appendChild(script);
 }
 
-function clearAnalyticsCookies() {
+function clearTrackingCookies() {
   const domain = window.location.hostname;
   document.cookie
     .split(";")
     .map((cookie) => cookie.split("=")[0].trim())
-    .filter((name) => name === "_gid" || name === "_gat" || name.startsWith("_ga"))
+    .filter(
+      (name) =>
+        name === "_gid" ||
+        name === "_gat" ||
+        name === "_fbp" ||
+        name === "_fbc" ||
+        name.startsWith("_ga"),
+    )
     .forEach((name) => {
       document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
       document.cookie = `${name}=; Max-Age=0; Path=/; Domain=${domain}; SameSite=Lax`;
@@ -68,7 +78,7 @@ export function Analytics({ containerId }: { containerId: string }) {
     const applyConsent = (consent: AnalyticsConsent) => {
       updateConsent(consent);
       if (consent === "accepted") loadTagManager(containerId);
-      else clearAnalyticsCookies();
+      else clearTrackingCookies();
     };
     const storedConsent = readAnalyticsConsent();
     if (storedConsent) applyConsent(storedConsent);

@@ -1,6 +1,6 @@
 "use client";
 
-export const consentStorageKey = "samucar-cookie-consent";
+export const consentStorageKey = "samucar-cookie-consent-v2";
 export const consentChangeEvent = "samucar:consent-change";
 export const openConsentEvent = "samucar:open-consent";
 
