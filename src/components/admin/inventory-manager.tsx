@@ -14,7 +14,6 @@ const emptyVehicle = (): VehicleInput => ({
   version: "",
   price: 0,
   year: new Date().getFullYear(),
-  month: 1,
   kms: 0,
   fuel: "Diesel",
   horsepower: 0,
@@ -251,7 +250,6 @@ export function InventoryManager({ initialVehicles }: { initialVehicles: Vehicle
               <NumberField label="Preço (€)" value={draft.price} onChange={(value) => setDraft({ ...draft, price: value })} />
               <NumberField label="Quilómetros" value={draft.kms} onChange={(value) => setDraft({ ...draft, kms: value })} />
               <NumberField label="Ano" value={draft.year} onChange={(value) => setDraft({ ...draft, year: value })} />
-              <NumberField label="Mês" value={draft.month} onChange={(value) => setDraft({ ...draft, month: value })} />
               <SelectField label="Combustível" value={draft.fuel} options={["Diesel", "Gasolina", "Elétrico", "Híbrido-Diesel", "Híbrido-Gasolina"]} onChange={(value) => setDraft({ ...draft, fuel: value })} />
               <SelectField label="Transmissão" value={draft.transmission} options={["Automático", "Manual"]} onChange={(value) => setDraft({ ...draft, transmission: value })} />
               <NumberField label="Potência (cv)" value={draft.horsepower} onChange={(value) => setDraft({ ...draft, horsepower: value })} />

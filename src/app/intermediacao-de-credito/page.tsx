@@ -6,7 +6,7 @@ const identityDetails = [
   ["1. Nome / firma ou denominação", "Automóveisamucar - Mediação Automóvel Lda."],
   ["2. Domicílio profissional / sede social", "Estrada da Algazarra nº 1, 2810-014 Almada"],
   ["3. Número de registo junto do Banco de Portugal", "0002884"],
-  ["4. Contacto telefónico", "211 818 706"],
+  ["4. Contacto telefónico", "938 468 354"],
   ["5. Endereço de correio eletrónico", "geral.mediauto@gmail.com"],
   ["6. Categoria de intermediário de crédito", "Intermediário a Título Acessório"],
 ] as const;
@@ -28,7 +28,7 @@ export default function CreditIntermediationPage() {
           <div key={label}>
             <dt>{label}</dt>
             <dd>
-              {label.startsWith("4.") ? <a href="tel:+351211818706">{value}</a> : label.startsWith("5.") ? <a href={`mailto:${value}`}>{value}</a> : value}
+              {label.startsWith("4.") ? <a href="tel:+351938468354">{value}</a> : label.startsWith("5.") ? <a href={`mailto:${value}`}>{value}</a> : value}
             </dd>
           </div>
         ))}
@@ -58,8 +58,8 @@ export default function CreditIntermediationPage() {
       <p>É proibido ao intermediário de crédito receber ou entregar quaisquer valores relacionados com a formação, a execução e o cumprimento antecipado dos contratos de crédito, nos termos do artigo 46.º do regime jurídico dos intermediários de crédito, aprovado pelo Decreto-Lei n.º 81-C/2017, de 7 de julho.</p>
       <p>A atividade de Automóveisamucar - Mediação Automóvel Lda. como intermediário de crédito está sujeita à supervisão do Banco de Portugal.</p>
 
-      <h2>Pedido de financiamento</h2>
-      <p>Se pretende adquirir ou trocar a sua viatura, poderemos mediar o seu financiamento através de instituições financeiras com soluções adequadas a cada cliente. Reúna os documentos indicados para avaliação da sua proposta e peça-nos uma simulação.</p>
+      <h2>Intermediação de Crédito</h2>
+      <p>Se pretende adquirir ou trocar a sua viatura, poderemos prestar serviço de intermediação de crédito através das instituições com que temos contrato de vinculação e encontrar uma solução adequada às suas necessidades. Reúna os documentos indicados para avaliação da sua proposta e peça-nos uma simulação.</p>
 
       <h2>Documentos para particulares</h2>
       <ul>

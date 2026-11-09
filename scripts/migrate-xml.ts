@@ -14,7 +14,6 @@ type XmlVehicle = {
   Version: string;
   Price: number;
   Year: number;
-  Month: number;
   Kms: number;
   Fuel: string;
   HP: number;
@@ -124,7 +123,6 @@ for (const [vehicleIndex, item] of xmlVehicles.entries()) {
     version: String(item.Version),
     price: parseLegacyNumber(item.Price),
     year: parseLegacyNumber(item.Year),
-    month: parseLegacyNumber(item.Month) || 1,
     kms: parseLegacyNumber(item.Kms),
     fuel: String(item.Fuel),
     horsepower: parseLegacyNumber(item.HP),

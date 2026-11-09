@@ -10,7 +10,7 @@ export type StockBrand = {
 export function listStockBrands(vehicles: Vehicle[]): StockBrand[] {
   const counts = new Map<string, number>();
   vehicles
-    .filter((vehicle) => vehicle.active && vehicle.status !== "sold")
+    .filter((vehicle) => vehicle.active)
     .forEach((vehicle) => counts.set(vehicle.brand, (counts.get(vehicle.brand) ?? 0) + 1));
 
   return [...counts.entries()]

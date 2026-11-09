@@ -39,7 +39,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
             <p className="mt-1 text-xl text-zinc-500">{vehicle.version}</p>
             <p className="my-6 text-3xl font-black sm:my-8 sm:text-4xl">{formatPrice(vehicle.price)}</p>
             <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200">
-              <Detail icon={<CalendarDays />} label="Ano" value={`${vehicle.month}/${vehicle.year}`} />
+              <Detail icon={<CalendarDays />} label="Ano" value={String(vehicle.year)} />
               <Detail icon={<Gauge />} label="Quilómetros" value={vehicle.kms ? `${formatNumber(vehicle.kms)} km` : "Sob consulta"} />
               <Detail icon={<Fuel />} label="Combustível" value={vehicle.fuel} />
               <Detail icon={<GitBranch />} label="Transmissão" value={vehicle.transmission} />
@@ -59,10 +59,11 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
             {vehicle.equipment.map((item) => <li key={item} className="flex items-start gap-3 text-zinc-700"><Check className="mt-0.5 shrink-0 text-[#a57b2d]" size={18} />{item}</li>)}
           </ul>
           <div className="mt-8 space-y-4 border-t border-zinc-100 pt-7 text-sm leading-6 text-zinc-600">
-            <p className="text-base font-black text-zinc-900">🎯 Tratamos do processo de financiamento.</p>
-            <p>Consultar condições comerciais de financiamento e preparação. Ao valor anunciado acresce despesas administrativas no valor de <strong className="text-zinc-900">350€ mais iva</strong></p>
             <p>Este anúncio foi inserido por rotina informática, a informação/descrição não dispensa confirmação junto dos nossos comerciais, nem poderá ser considerada vinculativa.</p>
-            <p className="font-bold text-zinc-800">Automóveisamucar - Mediação Automóvel, Lda - Intermediários de crédito a título acessório - AUT 0002884 do B.P.</p>
+            <p className="text-base font-black text-zinc-900">🎯 Tratamos do processo de Intermediação de Crédito Automóvel.</p>
+            <p>Tratamos do processo de intermediação de Crédito Automóvel. *</p>
+            <p className="font-bold text-zinc-800">* Automóveisamucar - Mediação Automóvel, Lda - Intermediário de crédito a título acessório - registado no Banco de Portugal com o n° 0002884.</p>
+            <p><strong className="text-zinc-800">** Consulte-nos para condições comerciais e de preparação.</strong><br />Ao valor anunciado acresce despesas administrativas no valor de 350€ mais iva.</p>
           </div>
         </div>
       </section>

@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     })),
     ...vehicles
-      .filter((vehicle) => vehicle.active && vehicle.status !== "sold")
+      .filter((vehicle) => vehicle.active)
       .map((vehicle) => ({
         url: `${siteUrl}/viaturas/${vehicle.slug}`,
         lastModified: new Date(vehicle.updatedAt),

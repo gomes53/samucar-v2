@@ -10,7 +10,6 @@ export const vehicleSchema = z.object({
   version: z.string().trim().min(1, "Indique a versão"),
   price: z.coerce.number().int().nonnegative(),
   year: z.coerce.number().int().min(1900).max(2100),
-  month: z.coerce.number().int().min(1).max(12).default(1),
   kms: z.coerce.number().int().nonnegative(),
   fuel: z.string().trim().min(1, "Indique o combustível"),
   horsepower: z.coerce.number().int().nonnegative(),

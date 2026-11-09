@@ -17,7 +17,7 @@ export function Inventory({ vehicles, fixedBrand = "" }: { vehicles: Vehicle[]; 
   const [sort, setSort] = useState<Sort>("recent");
   const [visibleCount, setVisibleCount] = useState(pageSize);
   const stockVehicles = useMemo(
-    () => vehicles.filter((vehicle) => vehicle.active && vehicle.status !== "sold"),
+    () => vehicles.filter((vehicle) => vehicle.active),
     [vehicles],
   );
   const brands = useMemo(() => [...new Set(stockVehicles.map((vehicle) => vehicle.brand))].sort(), [stockVehicles]);
@@ -37,7 +37,6 @@ export function Inventory({ vehicles, fixedBrand = "" }: { vehicles: Vehicle[]; 
     const normalized = query.trim().toLocaleLowerCase("pt");
     return vehicles
       .filter((vehicle) => vehicle.active)
-      .filter((vehicle) => vehicle.status !== "sold")
       .filter((vehicle) => !brand || vehicle.brand === brand)
       .filter((vehicle) => !model || vehicle.model === model)
       .filter((vehicle) => !fuel || vehicle.fuel === fuel)

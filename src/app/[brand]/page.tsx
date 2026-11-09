@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
   if (!brand) return {};
 
   const title = `${brand.name} usados em Almada`;
-  const description = `Consulte ${brand.count} ${brand.name} ${brand.count === 1 ? "usado disponível" : "usados disponíveis"} na Samucar, em Almada. Viaturas selecionadas, financiamento e acompanhamento personalizado.`;
+  const description = `Consulte ${brand.count} ${brand.name} ${brand.count === 1 ? "viatura" : "viaturas"} no catálogo da Samucar, em Almada. Viaturas selecionadas e acompanhamento personalizado.`;
   return {
     title,
     description,
@@ -37,7 +37,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
   if (!brand) notFound();
 
   const brandVehicles = vehicles.filter(
-    (vehicle) => vehicle.active && vehicle.status !== "sold" && vehicle.brand === brand.name,
+    (vehicle) => vehicle.active && vehicle.brand === brand.name,
   );
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://samucar.pt";
   const structuredData = {
@@ -69,8 +69,8 @@ export default async function BrandPage({ params }: BrandPageProps) {
         <h1 className="section-heading max-w-4xl">{brand.name} usados em Almada</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-600">
           {brand.count === 1
-            ? `Descubra o ${brand.name} disponível na Samucar.`
-            : `Descubra os ${brand.count} ${brand.name} disponíveis na Samucar.`} Consulte preços,
+            ? `Consulte a viatura ${brand.name} no catálogo da Samucar.`
+            : `Consulte as ${brand.count} viaturas ${brand.name} no catálogo da Samucar.`} Consulte preços,
           equipamento e fotografias, ou fale connosco para obter mais informações.
         </p>
         <div className="mt-12">
